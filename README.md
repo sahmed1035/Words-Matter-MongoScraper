@@ -4,7 +4,7 @@
 
 ## Project Description
 Link to the site: [Words-Matter](https://syeda-friend-finder1.herokuapp.com/)
-This web app scrapes news articles from https://www.educationnews.org/ using Mongoose and Cheerio and lets users view and leave comments on the latest news. 
+This web app scrapes news articles from https://www.unicefusa.org/ using Mongoose and Cheerio and lets users view and leave comments on the latest news. 
 * also lets users scrape new articles
 * clear saved articles 
 * view saved artiles
