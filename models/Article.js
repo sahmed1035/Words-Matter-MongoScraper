@@ -8,23 +8,24 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
-    type: String,
-    required: true
+    type: String 
   },
   // `link` is required and of type String
   link: {
-    type: String,
-    required: true
+    type: String 
   },
   // `link` is required and of type String
   photo: {
-    type: String,
-    required: true
+    type: String 
   },
   // `link` is required and of type String
   summary: {
-    type: String,
-    required: true
+    type: String 
+  },
+  saved:
+  {
+    type: Boolean,
+    default: false
   },
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model

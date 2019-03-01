@@ -2,12 +2,20 @@
  
 $.getJSON("/articles", function (data) {
  // For each one
+
+ $("#articles").empty();
  for (var i = 0; i < data.length; i++) {
+ 
   // Display the apropos information on the page
-  $("#articles").append("<button data-id='" + data[i]._id + "' class='deletebtn'>X</button><p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +"<br />" + data[i].photo+"<br />" + data[i].summary+  "</p>");
+  $("#articles").append("<button data-id='" + data[i]._id + "' class='deletebtn btn-danger'>Delete</button><button data-id='" + data[i]._id + "' class='savebtn btn-success' data-id='"+data[i]._id+"'>Save Article</button><p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +"<br /><img src='" + data[i].photo+"' /><br />" + data[i].summary+  "</p>");
+
 }
 });
 
+ $(document).on("click", ".savebtn", function () {
+
+ alert("id:" +$(this).attr("data-id"));
+});
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function () {
@@ -27,13 +35,13 @@ $(document).on("click", "p", function () {
     .then(function (data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h3>" + data.title + "</h3>");
       // An input to enter a new title
       $("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button data-id='" + data._id + "' class='btn btn-success' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -85,13 +93,10 @@ $(document).on("click", ".deletebtn", function () {
   $.ajax({
     method: "DELETE",
     url: "/articles/" + thisId
-
   })
     // With that done
     .then(function (data) {
       location.reload();
-
-      
     });
 
   // Also, remove the values entered in the input and textarea for note entry

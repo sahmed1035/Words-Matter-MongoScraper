@@ -1,6 +1,6 @@
 # Project Title
 ### Words-Matter-MongoScraper
- Global Education News Mongo Scraper
+ Unicef USA Mongo Scraper
 
 ## Project Description
 Link to the site: [Words-Matter](https://syeda-friend-finder1.herokuapp.com/)

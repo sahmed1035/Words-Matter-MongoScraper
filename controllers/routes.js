@@ -28,12 +28,16 @@ app.get("/scrape", function(req, res) {
         result.link = $(this)
           .children("a")
           .attr("href");
-          result.photo = $(".our-stories-sub-image")
+          result.photo = $(this)
+          .children("a")
+          .children("div")
           .children("img")
           .attr("src");
-          result.sumarry = $(".our-stories-sub-image")
+          result.summary = $(this)
+          .children("a")
+          .children("div")
           .children("img")
-          .text("title");
+          .attr("alt");
         // Create a new Article using the `result` object built from scraping
         db.Article.create(result)
           .then(function(dbArticle) {
