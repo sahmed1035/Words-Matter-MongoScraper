@@ -19,9 +19,7 @@ $(document).on("click", ".savebtn", function () {
   $.ajax({
     method: "PUT",
     url: "/saved/" + thisId,
-    data: {
-      saved: $(".savebtn").val(true)
-    }
+    data: { }  //this has to be an empty object, we only want to use it for saved field
   });
 });
 

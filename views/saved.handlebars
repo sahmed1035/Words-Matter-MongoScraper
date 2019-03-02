@@ -42,15 +42,26 @@
 
                     <div class="card-body">
                         <p class="card-text">
-                            <div id="saved-articles"> </div>
+                            <div id="saved-articles">
+                                {{!-- add the return value for article field saved is true --}}
+                                {{#each scrapes}}
+                                <ul>
+                                    <li>
+                                        <a href="{{link}}">{{title}}</a> <br />
+                                        <p> {{summary}} </p> <br />
+                                        <img src="{{photo}}" />
+                                    </li>
+                                </ul>
+
+                                <br />
+                                {{/each}}
+
+                            </div>
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-5">
-                <div id="notes"></div>
-            </div>
         </div>
 
 
