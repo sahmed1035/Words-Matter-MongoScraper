@@ -1,21 +1,53 @@
 
- 
 $.getJSON("/articles", function (data) {
- // For each one
+  // For each one
 
- $("#articles").empty();
- for (var i = 0; i < data.length; i++) {
- 
-  // Display the apropos information on the page
-  $("#articles").append("<button data-id='" + data[i]._id + "' class='deletebtn btn-danger'>Delete</button><button data-id='" + data[i]._id + "' class='savebtn btn-success' data-id='"+data[i]._id+"'>Save Article</button><p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +"<br /><img src='" + data[i].photo+"' /><br />" + data[i].summary+  "</p>");
+  $("#articles").empty();
+  for (var i = 0; i < data.length; i++) {
 
-}
+    // Display the apropos information on the page
+    $("#articles").append("<button data-id='" + data[i]._id + "' class='deletebtn btn-danger'>Delete</button><button data-id='" + data[i]._id + "' class='savebtn btn-success' data-id='" + data[i]._id + "'>Save Article</button><p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br /><img src='" + data[i].photo + "' /><br />" + data[i].summary + "</p>");
+
+  }
 });
 
- $(document).on("click", ".savebtn", function () {
+$(document).on("click", ".savebtn", function () {
 
- alert("id:" +$(this).attr("data-id"));
+  //  alert("id:" +$(this).attr("data-id"));
+  var thisId = $(this).attr("data-id");
+
+  $.ajax({
+    method: "PUT",
+    url: "/saved/" + thisId,
+    data: {
+      saved: $(".savebtn").val(true)
+    }
+  });
 });
+
+
+// When you click the savenote button
+$(document).on("click", ".savebtn", function () {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/saved/" + thisId,
+    data: {
+      saved: $(".savebtn").val(true)
+    }
+  })
+    // With that done
+    .then(function (data) {
+      $("#saved-articles").append(data.saved);
+    });
+});
+
+
+
+
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function () {
@@ -103,4 +135,3 @@ $(document).on("click", ".deletebtn", function () {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
- 
