@@ -19,32 +19,14 @@ $(document).on("click", ".savebtn", function () {
   $.ajax({
     method: "PUT",
     url: "/saved/" + thisId,
-    data: { }  //this has to be an empty object, we only want to use it for saved field
-  });
-});
-
-
-// When you click the savenote button
-$(document).on("click", ".savebtn", function () {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data-id");
-
-  // Run a POST request to change the note, using what's entered in the inputs
-  $.ajax({
-    method: "POST",
-    url: "/saved/" + thisId,
-    data: {
-      saved: $(".savebtn").val(true)
-    }
+    data: { } // this has to be an empty object, we only want to use it for saved field
   })
-    // With that done
-    .then(function (data) {
-      $("#saved-articles").append(data.saved);
-    });
+// With that done
+.then(function (data) {
+  $("#saved-articles").append(data.saved);
 });
 
-
-
+});
 
 
 // Whenever someone clicks a p tag
